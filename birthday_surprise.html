@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: white;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        .btn {
+            background-color: white;
+            color: #ff4f7b;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .gallery {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Happy Birthday My Love! ❤️</h1>
+    <p>You are the most amazing person in my life, and I’m so grateful to have you. May this year bring you endless joy and happiness!</p>
+    <button class="btn" onclick="playSong()">Click Here for a Surprise 🎶</button>
+    
+    <div class="gallery">
+        <h2>Our Beautiful Moments 💕</h2>
+        <input type="file" id="upload" multiple>
+        <div id="photos"></div>
+    </div>
+
+    <audio id="birthdaySong" src="happy-birthday.mp3"></audio>
+
+    <script>
+        function playSong() {
+            document.getElementById("birthdaySong").play();
+            alert("I love you! ❤️");
+        }
+
+        document.getElementById("upload").addEventListener("change", function(event) {
+            let photosDiv = document.getElementById("photos");
+            photosDiv.innerHTML = "";
+            Array.from(event.target.files).forEach(file => {
+                let img = document.createElement("img");
+                img.src = URL.createObjectURL(file);
+                img.width = 150;
+                img.style.margin = "10px";
+                photosDiv.appendChild(img);
+            });
+        });
+    </script>
+</body>
+</html>
