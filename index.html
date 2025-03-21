@@ -31,6 +31,13 @@
         .gallery {
             margin-top: 30px;
         }
+        .gallery img {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -40,7 +47,6 @@
     
     <div class="gallery">
         <h2>Our Beautiful Moments 💕</h2>
-        <input type="file" id="upload" multiple>
         <div id="photos"></div>
     </div>
 
@@ -52,17 +58,19 @@
             alert("I love you! ❤️");
         }
 
-        document.getElementById("upload").addEventListener("change", function(event) {
-            let photosDiv = document.getElementById("photos");
-            photosDiv.innerHTML = "";
-            Array.from(event.target.files).forEach(file => {
-                let img = document.createElement("img");
-                img.src = URL.createObjectURL(file);
-                img.width = 150;
-                img.style.margin = "10px";
-                photosDiv.appendChild(img);
-            });
-        });
+        // Fetch images from images.json
+        fetch('images.json')
+            .then(response => response.json())
+            .then(data => {
+                let photosDiv = document.getElementById("photos");
+                photosDiv.innerHTML = "";
+                data.forEach(image => {
+                    let img = document.createElement("img");
+                    img.src = image.url.replace("github.com", "raw.githubusercontent.com").replace("blob/", "");
+                    photosDiv.appendChild(img);
+                });
+            })
+            .catch(error => console.error('Error loading images:', error));
     </script>
 </body>
 </html>
