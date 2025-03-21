@@ -13,9 +13,11 @@
             color: white;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
         .container {
             padding: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
         h1 {
             font-size: 2.5rem;
@@ -29,12 +31,18 @@
             border-radius: 10px;
             cursor: pointer;
             margin: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
         }
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             padding: 20px;
         }
         .gallery img {
@@ -43,6 +51,39 @@
             object-fit: cover;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: floatUp 4s linear infinite;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(0); opacity: 0.7; }
+            to { transform: translateY(-100vh); opacity: 0; }
         }
     </style>
 </head>
@@ -55,25 +96,39 @@
         <div class="gallery" id="gallery"></div>
         <audio id="birthdaySong" src="your-song.mp3"></audio>
     </div>
+    <div class="hearts" id="hearts"></div>
     <script>
         const images = [
-            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_1ce01d9a.jpg",
-            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_4a29b040.jpg",
-            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f306dd1a.jpg",
-            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f6cc621a.jpg",
-            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.02_ac1cc77c.jpg"
+            { "url": "https://raw.githubusercontent.com/Masbii/birthday/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_1ce01d9a.jpg" },
+            { "url": "https://raw.githubusercontent.com/Masbii/birthday/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_4a29b040.jpg" },
+            { "url": "https://raw.githubusercontent.com/Masbii/birthday/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f306dd1a.jpg" },
+            { "url": "https://raw.githubusercontent.com/Masbii/birthday/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f6cc621a.jpg" },
+            { "url": "https://raw.githubusercontent.com/Masbii/birthday/main/WhatsApp%20Image%202025-03-20%20at%2023.31.02_ac1cc77c.jpg" }
         ];
         
         const gallery = document.getElementById("gallery");
-        images.forEach(url => {
+        images.forEach(image => {
             const imgElement = document.createElement("img");
-            imgElement.src = url;
+            imgElement.src = image.url;
             gallery.appendChild(imgElement);
         });
         
         function playMusic() {
             document.getElementById("birthdaySong").play();
         }
+        
+        function createHearts() {
+            const heartsContainer = document.getElementById("hearts");
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                heartsContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+        setInterval(createHearts, 500);
     </script>
 </body>
 </html>
