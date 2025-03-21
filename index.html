@@ -9,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            background: linear-gradient(to bottom, #ff4d4d, #ff9999);
             color: white;
             margin: 0;
             padding: 0;
@@ -19,8 +19,16 @@
             padding: 20px;
             animation: fadeIn 2s ease-in-out;
         }
-        h1 {
-            font-size: 2.5rem;
+        h1, p {
+            background-image: linear-gradient(45deg, #ff0000, #ff6666);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8);
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0px 0px 10px rgba(255, 0, 0, 0.8); }
+            to { text-shadow: 0px 0px 20px rgba(255, 50, 50, 1); }
         }
         button {
             background-color: white;
@@ -32,11 +40,11 @@
             cursor: pointer;
             margin: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
         }
         button:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 1);
         }
         .gallery {
             display: flex;
@@ -50,13 +58,12 @@
             height: 250px;
             object-fit: cover;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 2s ease-in-out;
         }
         .gallery img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(1.15);
+            box-shadow: 0px 10px 20px rgba(255, 0, 0, 0.8);
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
@@ -74,12 +81,12 @@
         .heart {
             position: absolute;
             bottom: -10px;
-            width: 20px;
-            height: 20px;
-            background-color: pink;
-            opacity: 0.7;
-            border-radius: 50%;
-            animation: floatUp 4s linear infinite;
+            width: 25px;
+            height: 25px;
+            background-color: red;
+            opacity: 0.8;
+            clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 85%, 15% 100%, 0% 35%);
+            animation: floatUp 5s linear infinite;
         }
         @keyframes floatUp {
             from { transform: translateY(0); opacity: 0.7; }
@@ -125,10 +132,10 @@
                 heart.style.left = Math.random() * 100 + "vw";
                 heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
                 heartsContainer.appendChild(heart);
-                setTimeout(() => heart.remove(), 4000);
+                setTimeout(() => heart.remove(), 5000);
             }
         }
-        setInterval(createHearts, 500);
+        setInterval(createHearts, 700);
     </script>
 </body>
 </html>
