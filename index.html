@@ -3,77 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday My Love</title>
+    <title>Happy Birthday My Love ❤️</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            background: linear-gradient(to bottom, #ff9a9e, #fecfef);
+            font-family: Arial, sans-serif;
             color: white;
-            padding: 50px;
+            padding: 20px;
         }
+
         h1 {
-            font-size: 3em;
+            font-size: 36px;
         }
+
         p {
-            font-size: 1.5em;
+            font-size: 18px;
+            margin-bottom: 20px;
         }
-        .btn {
+
+        #playMusic {
             background-color: white;
             color: #ff4f7b;
-            padding: 15px 25px;
-            font-size: 1.2em;
             border: none;
-            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
             cursor: pointer;
-            margin-top: 20px;
-        }
-        .gallery {
-            margin-top: 30px;
-        }
-        .gallery img {
-            width: 200px;
-            height: auto;
-            margin: 10px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        #playMusic:hover {
+            background-color: #ff4f7b;
+            color: white;
+        }
+
+        #photos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        #photos img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #photos img:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+
     <h1>🎉 Happy Birthday My Love! ❤️</h1>
-    <p>You are the most amazing person in my life, and I’m so grateful to have you. May this year bring you endless joy and happiness!</p>
-    <button class="btn" onclick="playSong()">Click Here for a Surprise 🎶</button>
-    
-    <div class="gallery">
-        <h2>Our Beautiful Moments 💕</h2>
-        <div id="photos"></div>
+    <p>You are the most amazing person in my life, and I’m so grateful to have you. May this year bring you endless joy and happiness! 💖</p>
+
+    <audio id="birthdaySong" loop>
+        <source src="your-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button id="playMusic">Click Here for a Surprise 🎶</button>
+
+    <h2>Our Beautiful Moments 💕</h2>
+
+    <div id="photos">
+        <img src="image1.jpg" alt="Beautiful Moment">
+        <img src="image2.jpg" alt="Beautiful Moment">
+        <img src="image3.jpg" alt="Beautiful Moment">
+        <img src="image4.jpg" alt="Beautiful Moment">
+        <img src="image5.jpg" alt="Beautiful Moment">
     </div>
 
-    <audio id="birthdaySong" src="happy-birthday.mp3"></audio>
-
     <script>
-        function playSong() {
-            document.getElementById("birthdaySong").play();
-            alert("I love you! ❤️");
-        }
-
-        // Fetch images from images.json
-        fetch('images.json')
-    .then(response => response.json())
-    .then(data => {
-        let photosDiv = document.getElementById("photos");
-        photosDiv.innerHTML = "";
-        data.forEach(image => {
-            let img = document.createElement("img");
-            img.src = image.url.replace("github.com", "raw.githubusercontent.com").replace("/blob", "");
-            img.onerror = function () {
-                console.error("Failed to load image: " + img.src);
-            };
-            photosDiv.appendChild(img);
+        document.getElementById("playMusic").addEventListener("click", function() {
+            let audio = document.getElementById("birthdaySong");
+            audio.play().catch(error => console.error("Audio play failed:", error));
         });
-    })
-    .catch(error => console.error("Error loading images:", error));
     </script>
+
 </body>
 </html>
