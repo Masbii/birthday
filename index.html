@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday My Love ❤️</title>
+    <title>Happy Birthday My Love</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Background color matching your screenshot */
         body {
-            background: linear-gradient(to bottom, #ff9aa2, #ffbcc2);
-            text-align: center;
             font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
             color: white;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
         }
-
-        /* Animated hearts */
+        .container {
+            padding: 20px;
+        }
         .heart {
             position: absolute;
             width: 20px;
@@ -37,50 +37,54 @@
                 opacity: 0;
             }
         }
-
-        /* Button */
-        .surprise-btn {
+        h1, h2, p {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ff0000, #ff6600, #ff3366, #ff0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glitter 1.5s infinite alternate;
+        }
+        @keyframes glitter {
+            0% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff6600, 0 0 15px #ff3366; }
+            100% { text-shadow: 0 0 10px #ff6600, 0 0 20px #ff3366, 0 0 30px #ff0000; }
+        }
+        button {
             background-color: white;
-            color: #ff477e;
-            padding: 12px 24px;
-            font-size: 18px;
+            color: #ff3366;
             border: none;
-            border-radius: 25px;
+            padding: 15px 20px;
+            font-size: 1rem;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: bold;
+            margin: 20px;
             transition: 0.3s;
         }
-
-        .surprise-btn:hover {
-            background-color: #ff477e;
+        button:hover {
+            background-color: #ff3366;
             color: white;
+            box-shadow: 0 0 15px #ff3366;
         }
-
-        /* Gallery Styling */
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            padding: 20px;
         }
-
         .gallery img {
-            width: 200px;
-            height: 200px;
-            border-radius: 10px;
+            width: 250px;
+            height: 250px;
             object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
         }
-
         .gallery img:hover {
             transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-
-    <!-- Floating Hearts -->
     <script>
         function createHeart() {
             const heart = document.createElement("div");
@@ -96,20 +100,19 @@
 
         setInterval(createHeart, 500);
     </script>
-
-    <h1>🎉 Happy Birthday My Love! ❤️</h1>
-    <p>You are the most amazing person in my life, and I’m so grateful to have you. May this year bring you endless joy and happiness! 💖</p>
-    <button class="surprise-btn" onclick="alert('Surprise Coming Soon! 🎶')">Click Here for a Surprise 🎶</button>
-
-    <h2>Our Beautiful Moments 💕</h2>
-    <div id="gallery" class="gallery"></div>
-
-    <!-- Gallery Script -->
+    <div class="container">
+        <h1>🎉 Happy Birthday My Love! ❤️</h1>
+        <p>You are the most amazing person in my life, and I’m so grateful to have you. May this year bring you endless joy and happiness! 💖</p>
+        <button onclick="playMusic()">Click Here for a Surprise 🎶</button>
+        <h2>Our Beautiful Moments 💕</h2>
+        <div class="gallery" id="gallery"></div>
+        <audio id="birthdaySong" src="your-song.mp3"></audio>
+    </div>
     <script>
         const images = [
             { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_1ce01d9a.jpg?raw=true" },
             { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_4a29b040.jpg?raw=true" },
-            { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f306dd1a.jpg?raw=true" },
+            { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_cc273653.jpg?raw=true" },
             { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f6cc621a.jpg?raw=true" },
             { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.02_ac1cc77c.jpg?raw=true" }
         ];
@@ -120,7 +123,10 @@
             imgElement.src = image.url;
             gallery.appendChild(imgElement);
         });
+        
+        function playMusic() {
+            document.getElementById("birthdaySong").play();
+        }
     </script>
-
 </body>
 </html>
