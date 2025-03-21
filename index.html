@@ -60,17 +60,20 @@
 
         // Fetch images from images.json
         fetch('images.json')
-            .then(response => response.json())
-            .then(data => {
-                let photosDiv = document.getElementById("photos");
-                photosDiv.innerHTML = "";
-                data.forEach(image => {
-                    let img = document.createElement("img");
-                    img.src = image.url.replace("github.com", "raw.githubusercontent.com").replace("/blob", "");
-                    photosDiv.appendChild(img);
-                });
-            })
-            .catch(error => console.error('Error loading images:', error));
+    .then(response => response.json())
+    .then(data => {
+        let photosDiv = document.getElementById("photos");
+        photosDiv.innerHTML = "";
+        data.forEach(image => {
+            let img = document.createElement("img");
+            img.src = image.url.replace("github.com", "raw.githubusercontent.com").replace("/blob", "");
+            img.onerror = function () {
+                console.error("Failed to load image: " + img.src);
+            };
+            photosDiv.appendChild(img);
+        });
+    })
+    .catch(error => console.error("Error loading images:", error));
     </script>
 </body>
 </html>
