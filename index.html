@@ -57,17 +57,17 @@
     </div>
     <script>
         const images = [
-            { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_1ce01d9a.jpg?raw=true" },
-            { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_4a29b040.jpg?raw=true" },
-            { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_cc273653.jpg?raw=true" },
-            { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f6cc621a.jpg?raw=true" },
-            { "url": "https://github.com/Masbii/birthday/blob/main/WhatsApp%20Image%202025-03-20%20at%2023.31.02_ac1cc77c.jpg?raw=true" }
+            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_1ce01d9a.jpg",
+            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_4a29b040.jpg",
+            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.00_cc273653.jpg",
+            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.01_f6cc621a.jpg",
+            "https://github.com/Masbii/birthday/raw/main/WhatsApp%20Image%202025-03-20%20at%2023.31.02_ac1cc77c.jpg"
         ];
         
         const gallery = document.getElementById("gallery");
-        images.forEach(image => {
+        images.forEach(url => {
             const imgElement = document.createElement("img");
-            imgElement.src = image.url;
+            imgElement.src = url;
             gallery.appendChild(imgElement);
         });
         
